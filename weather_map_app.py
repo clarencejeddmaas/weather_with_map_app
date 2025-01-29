@@ -78,38 +78,6 @@ def get_weather(city):
         return {"error": f"Error fetching weather data: {error_message}"}
     except Exception as e:
         return {"error": f"An unexpected error occurred: {error_message}"}
-    
-    # SUNRISE/SUNSET TIME RETRIEVAL FUNCTION
-def get_sun_times(city):
-    url = f"https://wttr.in/{city}?format=%S,%s"
-    try:
-        response = requests.get(url, timeout=5)
-        response.raise_for_status()
-        sun_times_str = response.text.strip()
-
-        print(f"Raw Sunrise/Sunset API Response: {sun_times_str}")
-
-        sun_times = sun_times_str.split(",")
-
-        # Assign values properly
-        sunrise = sun_times[0].strip() if sun_times[0] and sun_times[0] != "-" else "N/A"
-        sunset = sun_times[1].strip() if len(sun_times) > 1 and sun_times[1] and sun_times[1] != "-" else "N/A"
-
-        # Convert to 12-hour format if the time is available and valid
-        if sunrise != "N/A":
-            sunrise = datetime.strptime(sunrise, "%H:%M:%S").strftime("%I:%M:%S %p")
-        if sunset != "N/A":
-            sunset = datetime.strptime(sunset, "%H:%M:%S").strftime("%I:%M:%S %p")
-
-        return sunrise, sunset
-
-    except requests.exceptions.RequestException as error_message:
-        print(f"Error fetching sunrise/sunset data: {error_message}")
-        return "N/A", "N/A"
-    except Exception as e:
-        print(f"An unexpected error occurred: {error_message}")
-        return "N/A", "N/A"
-
 
 # MAIN WEATHER UPDATE FUNCTION
 def getWeather():
@@ -141,13 +109,6 @@ def getWeather():
         if "error" in weather_data:
             messagebox.showerror("Error", weather_data["error"])
             return
-        
-        # Get sunrise and sunset times for today
-        sunrise_time, sunset_time = get_sun_times(city)
-
-        # Update labels with the retrieved sunrise and sunset times
-        sunrise_label.config(text=f"☀️Sunrise: {sunrise_time}")
-        sunset_label.config(text=f"🌙 Sunset: {sunset_time}")
 
 # Update current weather information
         try:
@@ -202,46 +163,6 @@ def getWeather():
                                 if forecast_photo:
                                     day_images[days_index].config(image=forecast_photo)
                                     day_images[days_index].image = forecast_photo
-
-                                    # Check if temperature exists for this hour and display it
-                                if 'tempC' in hourly_item:
-                                    day_temps[days_index].config(text=hourly_item['tempC'] + " °C")
-                                else:
-                                    print(f"No temperature data found for {day_name}")
-
-                            else:
-                                print(f"No hourly weather description found for {day_name}")
-                        else:
-                            print(f"No hourly data found for {day_name}")
-                    else:
-                        print(f"No weather data found for {day_name}")  
-
-                except (IndexError, KeyError, FileNotFoundError) as error_message:
-                    print(f"Error processing forecast data for {day_name}: {error_message}")
-
-        else:
-            messagebox.showerror("Error", "Weather data not available.")
-            root.update_idletasks()
-
-    except Exception as error_message:
-        messagebox.showerror("Error", f"An unexpected error occurred: {str(error_message)}")
-    time.sleep(1)
-
-# Icon for the app
-image_path = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "logo.png") #Replace with your actual path
-try:
-    image_icon = PhotoImage(file=image_path)
-    root.iconphoto(False, image_icon)
-except FileNotFoundError:
-    print("Warning: App icon not found.")
-
-round_path = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "Rounded Rectangle 1.png") #Replace with your actual path
-try:
-    round_image = PhotoImage(file=round_path)
-    Label(root, image=round_image, bg="#57adff").place(x=30, y=110)
-except FileNotFoundError:
-    print("Warning: Rounded Rectangle image not found.")
-    
 # Labels for each field
 label1 = Label(root, text="Condition:", font=('Helvetica', 10), fg="white", bg="#203243")
 label1.place(x=35, y=120)
@@ -294,20 +215,6 @@ Label(frame, image=firstbox, bg="#212120").place(x=30, y=20)
 Label(frame, image=secondbox, bg="#212120").place(x=300, y=30)
 Label(frame, image=secondbox, bg="#212120").place(x=400, y=30)
 Label(frame, image=secondbox, bg="#212120").place(x=500, y=30)
-
-# INTERACTIVE MAP FUNCTION
-def create_interactive_map():
-    map_frame = Frame(root, width=900, height=180, bg="#282829", highlightthickness=0)
-    map_frame.place(x=600, y=315)  # Updated position to place beside the smaller boxes
-    map_frame.lift()
-    map_frame.update_idletasks()
-
-    map_view = TkinterMapView(map_frame, width=250, height=130, corner_radius=10)
-    map_view.pack(fill=BOTH, expand=True)
-    return map_view
-
-# Call the function to create the map
-map_view = create_interactive_map()
 
 # Clock
 clock = Label(root, font=("Helvetica", 30, "bold"), fg="white", bg="#57adff")
@@ -375,26 +282,3 @@ thirdimage = Label(fourth_frame, bg="#282829")
 thirdimage.place(x=7, y=20)
 day3temp = Label(fourth_frame, bg="#282829", fg="#fff")
 day3temp.place(x=10, y=70)
-
-#days
-first = datetime.now()
-day_1.config(text=first.strftime("%A"))
-
-second = first+timedelta(days=1)
-day_2.config(text=second.strftime("%A"))
-
-third = first+timedelta(days=2)
-day_3.config(text=third.strftime("%A"))
-
-day_labels = [day_1, day_2, day_3]
-day_temps = [day1temp, day2temp, day3temp]
-day_images = [firstimage, secondimage, thirdimage]
-
-twilight_title = Label(first_frame, text="TODAY'S TWILIGHT", font=("arial", 14, "bold"), bg="#282829", fg="white")
-twilight_title.place(x=15, y=10)
-
-sunrise_label = Label(first_frame, font=("arial", 12), bg="#282829", fg="#fff")
-sunrise_label.place(x=10, y=50)  # Adjust positioning
-
-sunset_label = Label(first_frame, font=("arial", 12), bg="#282829", fg="#fff")
-sunset_label.place(x=10, y=90)  # Adjust positioning
