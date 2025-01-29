@@ -24,6 +24,32 @@ root.resizable(False, False)
 # SETUP GEOLOCATION
 geolocator = Nominatim(user_agent="my_weather_app_v1")
 
+# IMAGE RESIZING FUNCTION
+def resize_image_aspect(image_path, max_width, max_height):
+    try:
+        img = Image.open(image_path)
+        width, height = img.size
+        aspect_ratio = width / height
+
+        if width > max_width:
+            new_width = max_width
+            new_height = int(new_width / aspect_ratio)
+        elif height > max_height:
+            new_height = max_height
+            new_width = int(new_height * aspect_ratio)
+        else:
+            new_width, new_height = width, height
+
+        resized_img = img.resize((new_width, new_height))
+        return ImageTk.PhotoImage(resized_img)
+    except FileNotFoundError:
+        print(f"Image file not found: {image_path}")
+        return None
+    except Exception as error_message:
+        print(f"Error processing image: {error_message}")
+        return None
+
+
 # Labels for each field
 label1 = Label(root, text="Condition:", font=('Helvetica', 10), fg="white", bg="#203243")
 label1.place(x=35, y=120)
