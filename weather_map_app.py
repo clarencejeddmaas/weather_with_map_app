@@ -186,6 +186,25 @@ clock.place(x=30, y=20)
 timezone = Label(root, font=("Helvetica", 20), fg="white", bg="#57adff")
 timezone.place(x=700, y=20)
 
+# Weather current
+long_lat = Label(root, font=("Helvetica", 10), fg="white", bg="#57adff")
+long_lat.place(x=700, y=50)
+
+condition = Label(root, font=("Helvetica", 10), fg="white", bg="#203243")
+condition.place(x=100, y=120)
+
+temperature = Label(root, font=("Helvetica", 10), fg="white", bg="#203243")
+temperature.place(x=130, y=140)
+
+wind = Label(root, font=("Helvetica", 10), fg="white", bg="#203243")
+wind.place(x=130, y=160)
+
+pressure = Label(root, font=("Helvetica", 10), fg="white", bg="#203243")
+pressure.place(x=130, y=180)
+
+visibility = Label(root, font=("Helvetica", 10), fg="white", bg="#203243")
+visibility.place(x=130, y=200)
+
 #first cell
 first_frame = Frame(root, width=230, height=132, bg="#282829")
 first_frame.place(x=35, y=315)
