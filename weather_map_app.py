@@ -109,6 +109,13 @@ def getWeather():
         if "error" in weather_data:
             messagebox.showerror("Error", weather_data["error"])
             return
+        
+        # Get sunrise and sunset times for today
+        sunrise_time, sunset_time = get_sun_times(city)
+
+        # Update labels with the retrieved sunrise and sunset times
+        sunrise_label.config(text=f"☀️Sunrise: {sunrise_time}")
+        sunset_label.config(text=f"🌙 Sunset: {sunset_time}")
 
 # Update current weather information
         try:
@@ -164,7 +171,7 @@ def getWeather():
                                     day_images[days_index].config(image=forecast_photo)
                                     day_images[days_index].image = forecast_photo
 
-# Check if temperature exists for this hour and display it
+                                    # Check if temperature exists for this hour and display it
                                 if 'tempC' in hourly_item:
                                     day_temps[days_index].config(text=hourly_item['tempC'] + " °C")
                                 else:
