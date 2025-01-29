@@ -122,7 +122,19 @@ def getWeather():
             messagebox.showerror("Error", f"Error processing current weather data: {error_message}")
             return
 
-
+# Update current weather icon
+        try:
+            is_night = "pm" in current_time.lower()
+            icon_file = get_weather_icon(condition_text, is_night)
+            icon_path = f"C:/Users/emmad/OneDrive/Desktop/images/{icon_file}.png"
+            photo1 = resize_image_aspect(icon_path, 100, 100)
+            if photo1:
+                firstimage.config(image=photo1)
+                firstimage.image = photo1
+        except (IndexError, KeyError, FileNotFoundError) as error_message:
+            messagebox.showerror("Error", f"Error loading current weather icon: {error_message}")
+            print(f"Error loading icon: {error_message}, path: {icon_path}")
+            return
 
 
 # Labels for each field
