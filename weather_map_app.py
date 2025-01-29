@@ -110,7 +110,6 @@ def get_sun_times(city):
         print(f"An unexpected error occurred: {error_message}")
         return "N/A", "N/A"
 
-
 # MAIN WEATHER UPDATE FUNCTION
 def getWeather():
     city = textfield.get().strip()
@@ -241,6 +240,7 @@ try:
     Label(root, image=round_image, bg="#57adff").place(x=30, y=110)
 except FileNotFoundError:
     print("Warning: Rounded Rectangle image not found.")
+
 # Labels for each field
 label1 = Label(root, text="Condition:", font=('Helvetica', 10), fg="white", bg="#203243")
 label1.place(x=35, y=120)
@@ -397,3 +397,6 @@ sunrise_label.place(x=10, y=50)  # Adjust positioning
 
 sunset_label = Label(first_frame, font=("arial", 12), bg="#282829", fg="#fff")
 sunset_label.place(x=10, y=90)  # Adjust positioning
+
+#RUN THE MAIN LOOP
+root.mainloop()
