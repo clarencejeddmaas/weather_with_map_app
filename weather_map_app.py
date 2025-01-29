@@ -68,3 +68,8 @@ firstpath = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "Rounded Rect
 firstbox = PhotoImage(file=firstpath)
 secondpath = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "Rounded Rectangle 2 copy.png")
 secondbox = PhotoImage(file=secondpath)
+
+Label(frame, image=firstbox, bg="#212120").place(x=30, y=20)
+Label(frame, image=secondbox, bg="#212120").place(x=300, y=30)
+Label(frame, image=secondbox, bg="#212120").place(x=400, y=30)
+Label(frame, image=secondbox, bg="#212120").place(x=500, y=30)
