@@ -21,6 +21,9 @@ root.geometry("890x470+300+300")
 root.configure(bg="#57adff")
 root.resizable(False, False)
 
+# SETUP GEOLOCATION
+geolocator = Nominatim(user_agent="my_weather_app_v1")
+
 # Labels for each field
 label1 = Label(root, text="Condition:", font=('Helvetica', 10), fg="white", bg="#203243")
 label1.place(x=35, y=120)
