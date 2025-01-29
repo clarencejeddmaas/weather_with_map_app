@@ -73,3 +73,7 @@ Label(frame, image=firstbox, bg="#212120").place(x=30, y=20)
 Label(frame, image=secondbox, bg="#212120").place(x=300, y=30)
 Label(frame, image=secondbox, bg="#212120").place(x=400, y=30)
 Label(frame, image=secondbox, bg="#212120").place(x=500, y=30)
+
+# Clock
+clock = Label(root, font=("Helvetica", 30, "bold"), fg="white", bg="#57adff")
+clock.place(x=30, y=20)
