@@ -81,3 +81,13 @@ clock.place(x=30, y=20)
 # Timezone
 timezone = Label(root, font=("Helvetica", 20), fg="white", bg="#57adff")
 timezone.place(x=700, y=20)
+
+#first cell
+first_frame = Frame(root, width=230, height=132, bg="#282829")
+first_frame.place(x=35, y=315)
+day_1 = Label(first_frame, font="arial 20", bg="#282829", fg="#fff")
+day_1.place(x=100, y=5)
+firstimage = Label(first_frame, bg="#282829")
+firstimage.place(x=1, y=15)
+day1temp = Label(first_frame, bg="#282829", fg="#57adff", font="arial 15 bold")
+day1temp.place(x=100, y=50)
