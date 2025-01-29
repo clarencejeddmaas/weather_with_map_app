@@ -49,6 +49,24 @@ def resize_image_aspect(image_path, max_width, max_height):
         print(f"Error processing image: {error_message}")
         return None
 
+# WEATHER ICON RETRIEVAL FUNCTION
+def get_weather_icon(condition, is_night):
+    icon_map = {
+        "clear": "01n@2x" if is_night else "01d@2x",
+        "partly cloudy": "02n@2x" if is_night else "02d@2x",
+        "cloudy": "03n@2x" if is_night else "03d@2x",
+        "overcast": "04n@2x" if is_night else "04d@2x",
+        "light rain": "09n@2x" if is_night else "09d@2x",
+        "rain": "10n@2x" if is_night else "10d@2x",
+        "thunderstorm": "11n@2x" if is_night else "11d@2x",
+        "snow": "13n@2x" if is_night else "13d@2x",
+        "mist": "50n@2x" if is_night else "50d@2x",
+    }
+    for key, icon in icon_map.items():
+        if key in condition:
+            return icon
+    return "01d@2x"  # Default to clear (day)
+
 
 # Labels for each field
 label1 = Label(root, text="Condition:", font=('Helvetica', 10), fg="white", bg="#203243")
