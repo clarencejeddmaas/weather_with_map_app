@@ -361,3 +361,17 @@ thirdimage = Label(fourth_frame, bg="#282829")
 thirdimage.place(x=7, y=20)
 day3temp = Label(fourth_frame, bg="#282829", fg="#fff")
 day3temp.place(x=10, y=70)
+
+#days
+first = datetime.now()
+day_1.config(text=first.strftime("%A"))
+
+second = first+timedelta(days=1)
+day_2.config(text=second.strftime("%A"))
+
+third = first+timedelta(days=2)
+day_3.config(text=third.strftime("%A"))
+
+day_labels = [day_1, day_2, day_3]
+day_temps = [day1temp, day2temp, day3temp]
+day_images = [firstimage, secondimage, thirdimage]
