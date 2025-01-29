@@ -91,3 +91,13 @@ firstimage = Label(first_frame, bg="#282829")
 firstimage.place(x=1, y=15)
 day1temp = Label(first_frame, bg="#282829", fg="#57adff", font="arial 15 bold")
 day1temp.place(x=100, y=50)
+
+#second cell
+second_frame = Frame(root, width=70, height=115, bg="#282829")
+second_frame.place(x=305, y=325)
+day_1 = Label(second_frame, bg="#282829", fg="#fff")
+day_1.place(x=10, y=5)
+firstimage = Label(second_frame, bg="#282829")
+firstimage.place(x=7, y=20)
+day1temp = Label(second_frame, bg="#282829", fg="#fff")
+day1temp.place(x=10, y=70)
