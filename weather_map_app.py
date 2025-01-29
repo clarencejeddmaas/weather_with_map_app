@@ -281,6 +281,20 @@ Label(frame, image=secondbox, bg="#212120").place(x=300, y=30)
 Label(frame, image=secondbox, bg="#212120").place(x=400, y=30)
 Label(frame, image=secondbox, bg="#212120").place(x=500, y=30)
 
+# INTERACTIVE MAP FUNCTION
+def create_interactive_map():
+    map_frame = Frame(root, width=900, height=180, bg="#282829", highlightthickness=0)
+    map_frame.place(x=600, y=315)  # Updated position to place beside the smaller boxes
+    map_frame.lift()
+    map_frame.update_idletasks()
+
+    map_view = TkinterMapView(map_frame, width=250, height=130, corner_radius=10)
+    map_view.pack(fill=BOTH, expand=True)
+    return map_view
+
+# Call the function to create the map
+map_view = create_interactive_map()
+
 # Clock
 clock = Label(root, font=("Helvetica", 30, "bold"), fg="white", bg="#57adff")
 clock.place(x=30, y=20)
