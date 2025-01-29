@@ -32,3 +32,20 @@ label4 = Label(root, text="Pressure:", font=('Helvetica', 10), fg="white", bg="#
 label4.place(x=35, y=180)
 label5 = Label(root, text="Visibility:", font=('Helvetica', 10), fg="white", bg="#203243")
 label5.place(x=35, y=200)
+
+# Search Box
+search_path = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "Rounded Rectangle 3.png") #Replace with your actual path
+try:
+    search_image = PhotoImage(file=search_path)
+    my_image = Label(image=search_image, bg="#57adff")
+    my_image.place(x=270, y=120)
+except FileNotFoundError:
+    print("Warning: Search box image not found.")
+
+weat_path = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "Layer 7.png") #Replace with your actual path
+try:
+    weat_image = PhotoImage(file=weat_path)
+    weather_image = Label(root, image=weat_image, bg="#203243")
+    weather_image.place(x=290, y=127)
+except FileNotFoundError:
+    print("Warning: Weather icon image not found.")
