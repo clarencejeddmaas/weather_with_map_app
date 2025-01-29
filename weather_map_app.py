@@ -109,6 +109,13 @@ def getWeather():
         if "error" in weather_data:
             messagebox.showerror("Error", weather_data["error"])
             return
+        
+        # Get sunrise and sunset times for today
+        sunrise_time, sunset_time = get_sun_times(city)
+
+        # Update labels with the retrieved sunrise and sunset times
+        sunrise_label.config(text=f"☀️Sunrise: {sunrise_time}")
+        sunset_label.config(text=f"🌙 Sunset: {sunset_time}")
 
 # Update current weather information
         try:
