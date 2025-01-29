@@ -79,6 +79,38 @@ def get_weather(city):
     except Exception as e:
         return {"error": f"An unexpected error occurred: {error_message}"}
 
+# MAIN WEATHER UPDATE FUNCTION
+def getWeather():
+    city = textfield.get().strip()
+    if not city:
+        messagebox.showerror("Error", "Please enter a city name!")
+        return
+    try:
+        location = geolocator.geocode(city)
+        if not location:
+            messagebox.showerror("Error", "City not found!")
+            return
+
+        map_view.set_position(location.latitude, location.longitude, marker=True)
+        map_view.set_zoom(10)
+
+        obj = TimezoneFinder()
+        result = obj.timezone_at(lng=location.longitude, lat=location.latitude)
+        timezone.config(text=result)
+        long_lat.config(text=f"{round(location.latitude, 4)}°N, {round(location.longitude, 4)}°E")
+        
+        home = pytz.timezone(result)
+        local_time = datetime.now(home)
+        current_time = local_time.strftime("%I:%M %p")
+        clock.config(text=current_time)
+        
+        weather_data = get_weather(city)
+
+        if "error" in weather_data:
+            messagebox.showerror("Error", weather_data["error"])
+            return
+
+
 
 
 # Labels for each field
