@@ -110,6 +110,18 @@ def getWeather():
             messagebox.showerror("Error", weather_data["error"])
             return
 
+# Update current weather information
+        try:
+            condition_text = weather_data['current_condition'][0]['weatherDesc'][0]['value'].lower()
+            condition.config(text=condition_text.capitalize())
+            temperature.config(text=weather_data['current_condition'][0]['temp_C'] + " °C")
+            wind.config(text=weather_data['current_condition'][0]['windspeedKmph'] + " km/h")
+            pressure.config(text=weather_data['current_condition'][0]['pressure'] + " mb")
+            visibility.config(text=weather_data['current_condition'][0]['visibility'] + " km")
+        except (IndexError, KeyError) as error_message:
+            messagebox.showerror("Error", f"Error processing current weather data: {error_message}")
+            return
+
 
 
 
