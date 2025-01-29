@@ -147,7 +147,26 @@ def getWeather():
                 try:
                     day_labels[days_index].config(text=day_name)
 
-                    
+                    # Check if data for this day exists
+                    if days_index < num_forecast_days:
+                        hourly_data = weather_data['weather'][days_index].get('hourly', [])
+                        if hourly_data:
+                            hourly_item = next((item for item in hourly_data if 'weatherDesc' in item), None)
+                            if hourly_item:
+                                forecast_condition = hourly_item['weatherDesc'][0]['value'].lower()
+                                forecast_icon = get_weather_icon(forecast_condition, True)
+                                forecast_icon_path = f"C:/Users/emmad/OneDrive/Desktop/images/{forecast_icon}.png"
+
+                                print(f"Loading forecast icon: {forecast_icon_path}")
+
+                                forecast_photo = resize_image_aspect(forecast_icon_path, 50, 50)
+                                if forecast_photo:
+                                    day_images[days_index].config(image=forecast_photo)
+                                    day_images[days_index].image = forecast_photo
+
+
+
+                                    
 # Labels for each field
 label1 = Label(root, text="Condition:", font=('Helvetica', 10), fg="white", bg="#203243")
 label1.place(x=35, y=120)
