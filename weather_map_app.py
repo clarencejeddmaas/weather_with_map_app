@@ -67,6 +67,19 @@ def get_weather_icon(condition, is_night):
             return icon
     return "01d@2x"  # Default to clear (day)
 
+# WEATHER DATA RETRIEVAL FUNCTION
+def get_weather(city):
+    url = f"https://wttr.in/{city}?format=j1"
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as error_message:
+        return {"error": f"Error fetching weather data: {error_message}"}
+    except Exception as e:
+        return {"error": f"An unexpected error occurred: {error_message}"}
+
+
 
 # Labels for each field
 label1 = Label(root, text="Condition:", font=('Helvetica', 10), fg="white", bg="#203243")
