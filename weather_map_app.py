@@ -136,7 +136,18 @@ def getWeather():
             print(f"Error loading icon: {error_message}, path: {icon_path}")
             return
 
+# Update weekly forecast information and icons
+        if 'weather' in weather_data:
+            num_forecast_days = len(weather_data['weather'])
+            today = date.today()
+            print(f"Weather data received: {weather_data}")
+            for days_index in range(3):  # Loop over the first 3 days
+                future_date = today + timedelta(days=days_index)
+                day_name = future_date.strftime("%A")
+                try:
+                    day_labels[days_index].config(text=day_name)
 
+                    
 # Labels for each field
 label1 = Label(root, text="Condition:", font=('Helvetica', 10), fg="white", bg="#203243")
 label1.place(x=35, y=120)
