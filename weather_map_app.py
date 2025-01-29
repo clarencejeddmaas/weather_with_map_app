@@ -227,7 +227,21 @@ def getWeather():
         messagebox.showerror("Error", f"An unexpected error occurred: {str(error_message)}")
     time.sleep(1)
 
+# Icon for the app
+image_path = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "logo.png") #Replace with your actual path
+try:
+    image_icon = PhotoImage(file=image_path)
+    root.iconphoto(False, image_icon)
+except FileNotFoundError:
+    print("Warning: App icon not found.")
 
+round_path = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "Rounded Rectangle 1.png") #Replace with your actual path
+try:
+    round_image = PhotoImage(file=round_path)
+    Label(root, image=round_image, bg="#57adff").place(x=30, y=110)
+except FileNotFoundError:
+    print("Warning: Rounded Rectangle image not found.")
+    
 # Labels for each field
 label1 = Label(root, text="Condition:", font=('Helvetica', 10), fg="white", bg="#203243")
 label1.place(x=35, y=120)
