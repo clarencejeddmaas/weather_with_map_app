@@ -49,3 +49,12 @@ try:
     weather_image.place(x=290, y=127)
 except FileNotFoundError:
     print("Warning: Weather icon image not found.")
+
+textfield = tk.Entry(root, justify='center', width=15, font=('poppins', 25, 'bold'), bg="#203243", border=0, fg="white")
+textfield.place(x=370, y=130)
+textfield.focus()
+
+search_icon = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "Layer 6.png")
+search_photo = PhotoImage(file=search_icon)
+my_image_icon = Button(image=search_photo, borderwidth=0, cursor="hand2", bg="#203243", command=getWeather)
+my_image_icon.place(x=645, y=125)
