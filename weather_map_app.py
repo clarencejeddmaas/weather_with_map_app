@@ -164,9 +164,31 @@ def getWeather():
                                     day_images[days_index].config(image=forecast_photo)
                                     day_images[days_index].image = forecast_photo
 
+                                    # Check if temperature exists for this hour and display it
+                                if 'tempC' in hourly_item:
+                                    day_temps[days_index].config(text=hourly_item['tempC'] + " °C")
+                                else:
+                                    print(f"No temperature data found for {day_name}")
+
+                            else:
+                                print(f"No hourly weather description found for {day_name}")
+                        else:
+                            print(f"No hourly data found for {day_name}")
+                    else:
+                        print(f"No weather data found for {day_name}")  
+
+                except (IndexError, KeyError, FileNotFoundError) as error_message:
+                    print(f"Error processing forecast data for {day_name}: {error_message}")
+
+        else:
+            messagebox.showerror("Error", "Weather data not available.")
+            root.update_idletasks()
+
+    except Exception as error_message:
+        messagebox.showerror("Error", f"An unexpected error occurred: {str(error_message)}")
+    time.sleep(1)
 
 
-                                    
 # Labels for each field
 label1 = Label(root, text="Condition:", font=('Helvetica', 10), fg="white", bg="#203243")
 label1.place(x=35, y=120)
