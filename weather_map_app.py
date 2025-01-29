@@ -375,3 +375,12 @@ day_3.config(text=third.strftime("%A"))
 day_labels = [day_1, day_2, day_3]
 day_temps = [day1temp, day2temp, day3temp]
 day_images = [firstimage, secondimage, thirdimage]
+
+twilight_title = Label(first_frame, text="TODAY'S TWILIGHT", font=("arial", 14, "bold"), bg="#282829", fg="white")
+twilight_title.place(x=15, y=10)
+
+sunrise_label = Label(first_frame, font=("arial", 12), bg="#282829", fg="#fff")
+sunrise_label.place(x=10, y=50)  # Adjust positioning
+
+sunset_label = Label(first_frame, font=("arial", 12), bg="#282829", fg="#fff")
+sunset_label.place(x=10, y=90)  # Adjust positioning
