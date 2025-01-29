@@ -58,3 +58,13 @@ search_icon = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "Layer 6.pn
 search_photo = PhotoImage(file=search_icon)
 my_image_icon = Button(image=search_photo, borderwidth=0, cursor="hand2", bg="#203243", command=getWeather)
 my_image_icon.place(x=645, y=125)
+
+# Bottom box
+frame = Frame(root, width=900, height=180, bg="#212120")
+frame.pack(side=BOTTOM)
+
+# Bottom boxes
+firstpath = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "Rounded Rectangle 2.png")
+firstbox = PhotoImage(file=firstpath)
+secondpath = os.path.join("C:/Users/emmad/OneDrive/Desktop/images", "Rounded Rectangle 2 copy.png")
+secondbox = PhotoImage(file=secondpath)
