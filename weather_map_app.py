@@ -78,6 +78,38 @@ def get_weather(city):
         return {"error": f"Error fetching weather data: {error_message}"}
     except Exception as e:
         return {"error": f"An unexpected error occurred: {error_message}"}
+    
+    # SUNRISE/SUNSET TIME RETRIEVAL FUNCTION
+def get_sun_times(city):
+    url = f"https://wttr.in/{city}?format=%S,%s"
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        sun_times_str = response.text.strip()
+
+        print(f"Raw Sunrise/Sunset API Response: {sun_times_str}")
+
+        sun_times = sun_times_str.split(",")
+
+        # Assign values properly
+        sunrise = sun_times[0].strip() if sun_times[0] and sun_times[0] != "-" else "N/A"
+        sunset = sun_times[1].strip() if len(sun_times) > 1 and sun_times[1] and sun_times[1] != "-" else "N/A"
+
+        # Convert to 12-hour format if the time is available and valid
+        if sunrise != "N/A":
+            sunrise = datetime.strptime(sunrise, "%H:%M:%S").strftime("%I:%M:%S %p")
+        if sunset != "N/A":
+            sunset = datetime.strptime(sunset, "%H:%M:%S").strftime("%I:%M:%S %p")
+
+        return sunrise, sunset
+
+    except requests.exceptions.RequestException as error_message:
+        print(f"Error fetching sunrise/sunset data: {error_message}")
+        return "N/A", "N/A"
+    except Exception as e:
+        print(f"An unexpected error occurred: {error_message}")
+        return "N/A", "N/A"
+
 
 # MAIN WEATHER UPDATE FUNCTION
 def getWeather():
