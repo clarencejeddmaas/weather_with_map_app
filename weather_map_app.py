@@ -77,3 +77,7 @@ Label(frame, image=secondbox, bg="#212120").place(x=500, y=30)
 # Clock
 clock = Label(root, font=("Helvetica", 30, "bold"), fg="white", bg="#57adff")
 clock.place(x=30, y=20)
+
+# Timezone
+timezone = Label(root, font=("Helvetica", 20), fg="white", bg="#57adff")
+timezone.place(x=700, y=20)
